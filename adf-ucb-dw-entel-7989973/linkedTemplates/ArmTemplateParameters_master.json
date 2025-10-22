@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-ucb-dw-entel-7989973"
+		},
+		"Ls_sa_datos_entel_connectionString": {
+			"value": ""
+		},
+		"Ls_sql_entel_password": {
+			"value": ""
+		},
+		"Ls_sql_entel_properties_typeProperties_server": {
+			"value": "sql-ucb-sisinfo-entel-beta-7989973.database.windows.net"
+		},
+		"Ls_sql_entel_properties_typeProperties_database": {
+			"value": "dw_entel_delta"
+		},
+		"Ls_sql_entel_properties_typeProperties_userName": {
+			"value": "Edson"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

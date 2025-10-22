@@ -1,0 +1,97 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Nombre de instancia de Data Factory",
+			"defaultValue": "adf-ucb-dw-entel-7989973"
+		},
+		"Ls_sa_datos_entel_connectionString": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"connectionString\"de \"Ls_sa_datos_entel\""
+		},
+		"Ls_sql_entel_password": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"password\"de \"Ls_sql_entel\""
+		},
+		"Ls_sql_entel_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-ucb-sisinfo-entel-beta-7989973.database.windows.net"
+		},
+		"Ls_sql_entel_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "dw_entel_delta"
+		},
+		"Ls_sql_entel_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Edson"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI de la cuenta de almacenamiento que contiene las plantillas de ARM vinculadas."
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Token de SAS para la cuenta de almacenamiento que contiene las plantillas de ARM vinculadas"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-ucb-dw-entel-7989973_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Ls_sa_datos_entel_connectionString": {
+						"value": "[parameters('Ls_sa_datos_entel_connectionString')]"
+					},
+					"Ls_sql_entel_password": {
+						"value": "[parameters('Ls_sql_entel_password')]"
+					},
+					"Ls_sql_entel_properties_typeProperties_server": {
+						"value": "[parameters('Ls_sql_entel_properties_typeProperties_server')]"
+					},
+					"Ls_sql_entel_properties_typeProperties_database": {
+						"value": "[parameters('Ls_sql_entel_properties_typeProperties_database')]"
+					},
+					"Ls_sql_entel_properties_typeProperties_userName": {
+						"value": "[parameters('Ls_sql_entel_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-ucb-dw-entel-7989973_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-ucb-dw-entel-7989973_ArmTemplate_0')]"
+			]
+		}
+	]
+}
