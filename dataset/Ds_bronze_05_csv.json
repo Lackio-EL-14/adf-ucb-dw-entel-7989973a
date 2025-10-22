@@ -1,5 +1,5 @@
 {
-	"name": "Ds_bronze_06_csv",
+	"name": "Ds_bronze_05_csv",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Ls_sa_datos_entel",
@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "06.csv",
+				"fileName": "05.csv",
 				"container": "raw-entel"
 			},
 			"columnDelimiter": ";",

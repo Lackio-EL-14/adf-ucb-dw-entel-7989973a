@@ -1,0 +1,68 @@
+{
+	"name": "dataflowSilver0506",
+	"properties": {
+		"folder": {
+			"name": "Silver"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Ds_bronze_05",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Ds_bronze_06",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "union56"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          fecha_inicio as string,",
+				"          fecha_fin as string,",
+				"          numero as string,",
+				"          imei as string,",
+				"          rbs_utilizada as string,",
+				"          celda as string,",
+				"          latitud_longitud as string,",
+				"          subidos as string,",
+				"          descargados as string,",
+				"          total as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          fecha_inicio as string,",
+				"          fecha_fin as string,",
+				"          numero as string,",
+				"          imei as string,",
+				"          rbs_utilizada as string,",
+				"          celda as string,",
+				"          latitud_longitud as string,",
+				"          subidos as string,",
+				"          descargados as string,",
+				"          total as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source1, source2 union(byName: true)~> union56"
+			]
+		}
+	}
+}
