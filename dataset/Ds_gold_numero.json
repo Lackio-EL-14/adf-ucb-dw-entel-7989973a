@@ -1,0 +1,33 @@
+{
+	"name": "Ds_gold_numero",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_sql_entel",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Gold"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id_numero",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "numero",
+				"type": "nvarchar"
+			},
+			{
+				"name": "imei",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "gold",
+			"table": "dim_numero"
+		}
+	}
+}
